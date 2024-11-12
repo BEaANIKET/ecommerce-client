@@ -81,7 +81,7 @@ export const Navbar = () => {
             }`}
             onClick={() => router.replace("/shop")}
           >
-            Shop
+            Shop Now
           </li>
           <li
             className={`cursor-pointer hover:underline ${
