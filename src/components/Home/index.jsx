@@ -17,6 +17,7 @@ export const Home = () => {
             <CarouselEl />
             <HomeInfoEl />
             <ShopEl/>
+            <h1>Testing</h1>
             <NewProductListEl />
             <FeturedProductEl />
             <PromotionalBannerEl />
