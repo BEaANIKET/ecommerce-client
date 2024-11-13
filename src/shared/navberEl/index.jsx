@@ -88,6 +88,13 @@ export const Navbar = () => {
           >
             About
           </li>
+          <li
+            className={`cursor-pointer hover:underline ${isNavLinkActive("about") ? "underline font-bold" : ""
+              }`}
+            onClick={() => router.replace("/Login")}
+          >
+            login
+          </li>
         </ul>
       </div>
 
