@@ -1,9 +1,48 @@
 'use client'
 
+import { useReuestApi } from "@/hooks/useRequestApi";
 import Link from "next/link";
 import Input from "../InputEl/InputEl";
+import { useState } from "react";
 
 const RegisterEl= () => {
+
+    const [formData, setFormData] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: ''
+    });
+
+    const handleInputChange= (name, value) => {
+        setFormData(
+            (prev) => {
+                return {
+                    ...prev,
+                    [name]: value
+                }
+            }
+        );
+    }
+
+    const handleSubmit= async (e) => {
+
+        e.preventDefault();
+        console.log(formData)
+        const { first_name,last_name,email, password }= formData;
+        const body = {
+            fname: first_name,
+            lname: last_name,
+            email: email,
+            password: password
+        }
+        try{
+            const response= await useReuestApi('api/auth/register','POST',body);
+            console.log(response);
+        }catch(error) {
+            
+        }
+    }
 
     return (
         <div className="px-4 py-12 flex justify-center items-center bg-[#f2f2f2]">
@@ -15,14 +54,13 @@ const RegisterEl= () => {
                     </p>
                 </div>
 
-                <form action="" className="flex flex-col gap-2">
+                <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
                     <div className="flex gap-2 md:flex-row flex-col ">
-                        <Input type='text' name ='first_name' ph='First Name'/>
-                        <Input type='text' name ='last_name' ph='Last Name'/>
-
+                        <Input type='text' name ='first_name' ph='First Name' data={formData.first_name} onChange={(e) => { handleInputChange('first_name', e.currentTarget.value) }}/>
+                        <Input type='text' name ='last_name' ph='Last Name'  data={formData.last_name} onChange={(e) => { handleInputChange('last_name', e.currentTarget.value) }}/>
                     </div>
-                    <Input type='email' name ='email' ph='Email'/>
-                    <Input type='password' name ='password' ph='Password'/>
+                    <Input type='email' name ='email' ph='Email' data={formData.email} onChange={(e) => { handleInputChange('email', e.currentTarget.value) }}/>
+                    <Input type='password' name ='password' ph='Password' data={formData.password} onChange={(e) => { handleInputChange('password', e.currentTarget.value) }}/>
                     <button 
                         type="submit" 
                         className={`p-2 rounded-md bg-slate-900 text-white font-semibold active:scale-95`

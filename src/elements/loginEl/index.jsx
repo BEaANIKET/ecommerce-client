@@ -1,9 +1,44 @@
 'use client'
 
+import { useState } from "react";
 import Input from "../InputEl/InputEl";
 import Link from "next/link";
+import { useReuestApi } from "@/hooks/useRequestApi";
 
 const LoginEl= () => {
+
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
+
+    const handleInputChange= (name, value) => {
+        setFormData(
+            (prev) => {
+                return {
+                    ...prev,
+                    [name]: value
+                }
+            }
+        );
+    }
+
+    const handleSubmit= async (e) => {
+
+        e.preventDefault();
+        console.log(formData)
+        const { email, password }= formData;
+        const body = {
+            email: email,
+            password: password
+        }
+        try{
+            const response= await useReuestApi('api/auth/login','POST',body);
+            console.log(response);
+        }catch(error) {
+            
+        }
+    }
 
     return (
         <div className="px-4 py-12 flex justify-center items-center bg-[#f2f2f2]">
@@ -15,10 +50,10 @@ const LoginEl= () => {
                     </p>
                 </div>
 
-                <form action="" className="flex flex-col gap-2">
+                <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
 
-                    <Input type='email' name ='email' ph='Email'/>
-                    <Input type='password' name ='password' ph='Password'/>
+                <Input type='email' name ='email' ph='Email' data={formData.email} onChange={(e) => { handleInputChange('email', e.currentTarget.value) }}/>
+                <Input type='password' name ='password' ph='Password' data={formData.password} onChange={(e) => { handleInputChange('password', e.currentTarget.value) }}/>
 
                     <button 
                         type="submit" 
