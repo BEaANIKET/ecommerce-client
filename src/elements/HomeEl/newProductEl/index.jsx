@@ -1,4 +1,6 @@
+
 import { NewProductListEl2 } from "../newProductEl2";
+import { ProductsLayoutEl } from "@/shared/ProductsLayoutEl";
 
 
 const dummyProducts = [
@@ -19,7 +21,6 @@ const dummyProducts = [
 export const NewProductListEl = () => (
     <div className=" container ml-auto mr-auto w-full flex flex-col gap-3 mt-7 p-2 " >
        <NewProductListEl2 dummyProducts={dummyProducts} tittle={'New products'} />
-
     </div>
 
 );
