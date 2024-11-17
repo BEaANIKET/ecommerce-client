@@ -4,7 +4,7 @@ const HomeNewProductData= [
       name: "Wireless Earbuds",
       price: 2999,
       discountPrice: 4999,
-      image: "https://via.placeholder.com/300x300?text=Wireless+Earbuds",
+      image: "/i1.jpeg",
       rating: 4.5,
     },
     {
@@ -12,7 +12,7 @@ const HomeNewProductData= [
       name: "Smartphone Stand",
       price: 499,
       discountPrice: 799,
-      image: "https://via.placeholder.com/300x300?text=Smartphone+Stand",
+      image: "/i1.jpeg",
       rating: 4.2,
     },
     {
@@ -20,7 +20,7 @@ const HomeNewProductData= [
       name: "Bluetooth Speaker",
       price: 1999,
       discountPrice: 2499,
-      image: "https://via.placeholder.com/300x300?text=Bluetooth+Speaker",
+      image: "/i1.jpeg",
       rating: 4.7,
     },
     {
@@ -28,7 +28,7 @@ const HomeNewProductData= [
       name: "Fitness Tracker",
       price: 3499,
       discountPrice: 4999,
-      image: "https://via.placeholder.com/300x300?text=Fitness+Tracker",
+      image: "/i1.jpeg",
       rating: 4.4,
     },
     {
@@ -36,7 +36,7 @@ const HomeNewProductData= [
       name: "Laptop Backpack",
       price: 999,
       discountPrice: 1499,
-      image: "https://via.placeholder.com/300x300?text=Laptop+Backpack",
+      image: "/i1.jpeg",
       rating: 4.6,
     },
     {
@@ -44,7 +44,7 @@ const HomeNewProductData= [
       name: "Gaming Mouse",
       price: 1499,
       discountPrice: 1999,
-      image: "https://via.placeholder.com/300x300?text=Gaming+Mouse",
+      image: "/i1.jpeg",
       rating: 4.8,
     },
     {
@@ -52,7 +52,7 @@ const HomeNewProductData= [
       name: "Portable Charger",
       price: 1299,
       discountPrice: 1799,
-      image: "https://via.placeholder.com/300x300?text=Portable+Charger",
+      image: "/i1.jpeg",
       rating: 4.3,
     },
     {
@@ -60,7 +60,7 @@ const HomeNewProductData= [
       name: "Smartwatch",
       price: 4999,
       discountPrice: 5999,
-      image: "https://via.placeholder.com/300x300?text=Smartwatch",
+      image: "/i1.jpeg",
       rating: 4.5,
     },
   ];
