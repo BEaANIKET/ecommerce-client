@@ -51,17 +51,17 @@ const ShopDrawerEl = ({
       onClose={onClose}
       open={visible}
       bodyStyle={{ padding: 0 }}
-       
+      style={{ zIndex: 1050 }} // Ensure drawer has high z-index
     >
       <div className="p-4">
         {/* Sorting Dropdown */}
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <Dropdown overlay={sortMenu} trigger={["click"]}>
             <Button className="flex items-center justify-between w-full bg-blue-500 text-white px-4 py-2 rounded-md">
               Sort by: {sortOption} <DownOutlined className="ml-2" />
             </Button>
           </Dropdown>
-        </div>
+        </div> */}
 
         {/* Category Checkboxes */}
         {categories.map((cat) => (
