@@ -7,6 +7,10 @@ import ShCaHawanSamagiriEl from "@/elements/ShopPageCategories/ShCaHawanSamagriE
 import ShCaFlowersEl from "@/elements/ShopPageCategories/ShCaFlowersEl";
 import ShCaFruitsEl from "@/elements/ShopPageCategories/ShCaFruitsEl";
 import ShCaGiftEl from "@/elements/ShopPageCategories/ShCaGiftEl";
+import ShCaPriceLowToHighEl from "@/elements/ShopPageCategories/ShCaPriceLowToHighEl";
+import ShCaPriceHighToLowEl from "@/elements/ShopPageCategories/ShCaPriceHighToLowEl";
+import ShCaNewArrivalEl from "@/elements/ShopPageCategories/ShCaNewArrivalEl";
+import "./ShopPageLayoutEl.css";
 
 const ShopPageLayoutEl = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -21,7 +25,6 @@ const ShopPageLayoutEl = () => {
   ];
 
   const sortOptions = [
-    "Relevance",
     "New Arrivals",
     "Price (High to Low)",
     "Price (Low to High)",
@@ -44,6 +47,19 @@ const ShopPageLayoutEl = () => {
     }
   };
 
+  const renderSortedContent = () => {
+    switch (sortOption) {
+      case "Price (Low to High)":
+        return <ShCaPriceLowToHighEl />;
+      case "Price (High to Low)":
+        return <ShCaPriceHighToLowEl/>;
+      case "New Arrivals":
+        return <ShCaNewArrivalEl />;
+      default:
+        return null;
+    }
+  };
+
   const renderCategoryContent = () => {
     if (selectedFilters.length > 0) {
       return categories
@@ -55,7 +71,8 @@ const ShopPageLayoutEl = () => {
         ));
     }
 
-    return <ShCaFlowersEl/>
+    // Render the default content or sorted content if no filters are applied
+    return renderSortedContent() || <ShCaFlowersEl />;
   };
 
   const menu = (
@@ -67,9 +84,9 @@ const ShopPageLayoutEl = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100" style={{userSelect:"none"}}>
       {/* Sidebar for large screens */}
-      <div className="hidden md:block w-72 bg-white border-r shadow-md p-6">
+      <div className="hidden md:block w-46 bg-white border-r shadow-md p-6">
         <div className="mb-6">
           {/* Sort Dropdown */}
           <Dropdown overlay={menu} trigger={["click"]}>
@@ -84,7 +101,9 @@ const ShopPageLayoutEl = () => {
           {categories.map((cat) => (
             <div key={cat.id} className="mb-3">
               <Checkbox
-                onChange={(e) => handleCheckboxChange(cat.id, e.target.checked)}
+                onChange={(e) =>
+                  handleCheckboxChange(cat.id, e.target.checked)
+                }
                 checked={selectedFilters.includes(cat.id.toString())}
               >
                 {cat.name}
@@ -104,7 +123,7 @@ const ShopPageLayoutEl = () => {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 p-6">
+      <div className="flex-1">
         {/* Toggle Button for Drawer (Mobile View) */}
         <Button
           type="primary"
@@ -116,7 +135,10 @@ const ShopPageLayoutEl = () => {
         </Button>
 
         {/* Render Category Content */}
-        <div className="p-6 border rounded-lg bg-white shadow-lg transition-all duration-500">
+        <div
+          className="border bg-white  transition-all duration-500 overflow-y-auto max-h-[100vh]"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {renderCategoryContent()}
         </div>
       </div>
