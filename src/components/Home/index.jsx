@@ -10,6 +10,8 @@ import { PromotionalBannerEl } from "@/elements/HomeEl/PromotionalBannerEl"
 import TestimonialsPageEl from "@/elements/HomeEl/TestimonialEl"
 import TopProductCarEl2 from "@/elements/HomeEl/TopProductCarEl2"
 import TopProductCarrousel from "@/elements/HomeEl/TopProductCarousel"
+import { HomeFeaturedProductEl } from "@/elements/HomeEl2/HomeFeaturedProductEl"
+import { HomeNewProductTopEl } from "@/elements/HomeEl2/HomeNewProductTopEl"
 import HomeProductsLayoutEl from "@/elements/HomeEl2/HomeProductsLayoutEl"
 
 export const Home = () => {
@@ -19,9 +21,10 @@ export const Home = () => {
             {/* <HomeInfoEl /> */}
             <TopProductCarEl2/>
             {/* <TopProductCarrousel /> */}
-
-            <NewProductListEl />
-            <FeturedProductEl />
+            <HomeNewProductTopEl/>
+            <HomeFeaturedProductEl/>
+            {/* <NewProductListEl /> */}
+            {/* <FeturedProductEl /> */}
             <HomeProductsLayoutEl/>
             <PromotionalBannerEl />
             <TestimonialsPageEl />

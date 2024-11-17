@@ -13,7 +13,7 @@ const HomeProductsLayoutEl = forwardRef((_, ref) => {
         <Col key={product.id} xs={24} sm={12} md={8} lg={6} xl={4}>
           <Card
             hoverable
-            className="rounded-lg overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-2"
+            className="rounded-lg overflow-hidden shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105"
             cover={
               <div className="relative w-full h-60 overflow-hidden rounded-t-lg">
                 <Image
@@ -27,12 +27,14 @@ const HomeProductsLayoutEl = forwardRef((_, ref) => {
             }
           >
             <div className="flex justify-between items-center mb-2">
-              <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
+              <h3 className="text-lg font-semibold text-gray-800 truncate">{product.name}</h3>
               <HeartOutlined className="text-gray-400 hover:text-red-500 cursor-pointer transition duration-300 ease-in-out" />
             </div>
 
             <div className="mt-2 flex items-center justify-between">
-              <p className="text-gray-500 line-through">₹{product.discountPrice}</p>
+              {product.discountPrice && (
+                <p className="text-gray-500 line-through text-sm">₹{product.discountPrice}</p>
+              )}
               <p className="text-xl font-bold text-green-600">₹{product.price}</p>
             </div>
 
