@@ -1,5 +1,5 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { FilterOutlined, DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Menu, Checkbox } from "antd";
 import ShopDrawerEl from "../ShopDrawerEl";
@@ -32,6 +32,7 @@ const ShopPageLayoutEl = () => {
 
   const handleSortChange = ({ key }) => {
     setSortOption(key);
+    setDrawerVisible(false);  // Close the drawer after sorting
   };
 
   const handleCheckboxChange = (categoryId, checked) => {
@@ -52,7 +53,7 @@ const ShopPageLayoutEl = () => {
       case "Price (Low to High)":
         return <ShCaPriceLowToHighEl />;
       case "Price (High to Low)":
-        return <ShCaPriceHighToLowEl/>;
+        return <ShCaPriceHighToLowEl />;
       case "New Arrivals":
         return <ShCaNewArrivalEl />;
       default:
@@ -84,7 +85,7 @@ const ShopPageLayoutEl = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100" style={{userSelect:"none"}}>
+    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100" style={{ userSelect: "none" }}>
       {/* Sidebar for large screens */}
       <div className="hidden md:block w-46 bg-white border-r shadow-md p-6">
         <div className="mb-6">
@@ -101,9 +102,7 @@ const ShopPageLayoutEl = () => {
           {categories.map((cat) => (
             <div key={cat.id} className="mb-3">
               <Checkbox
-                onChange={(e) =>
-                  handleCheckboxChange(cat.id, e.target.checked)
-                }
+                onChange={(e) => handleCheckboxChange(cat.id, e.target.checked)}
                 checked={selectedFilters.includes(cat.id.toString())}
               >
                 {cat.name}
@@ -120,6 +119,8 @@ const ShopPageLayoutEl = () => {
         categories={categories}
         selectedFilters={selectedFilters}
         onCategoryChange={setSelectedFilters}
+        sortOption={sortOption}
+        onSortChange={handleSortChange}
       />
 
       {/* Main Content Area */}
@@ -128,7 +129,7 @@ const ShopPageLayoutEl = () => {
         <Button
           type="primary"
           icon={<FilterOutlined />}
-          className="md:hidden mb-6 bg-blue-600 hover:bg-blue-700"
+          className="md:hidden my-3 mx-1 bg-blue-600 hover:bg-blue-700"
           onClick={() => setDrawerVisible(true)}
         >
           Filter
@@ -136,7 +137,7 @@ const ShopPageLayoutEl = () => {
 
         {/* Render Category Content */}
         <div
-          className="border bg-white  transition-all duration-500 overflow-y-auto max-h-[100vh]"
+          className="border bg-white transition-all duration-500 overflow-y-auto max-h-[100vh]"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {renderCategoryContent()}
