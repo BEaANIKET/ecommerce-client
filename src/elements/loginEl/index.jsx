@@ -40,6 +40,14 @@ const LoginEl= () => {
         }
     }
 
+    const handleClick= async() => {
+        try{
+            window.location.href = 'http://localhost:4000/api/auth/google';
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     return (
         <div className="px-4 py-12 flex justify-center items-center bg-[#f2f2f2]">
             <div className="flex flex-col gap-4 justify-center bg-white shadow-lg p-8 rounded-xl">
@@ -74,6 +82,7 @@ const LoginEl= () => {
                     <button 
                     type="button"
                     className="p-1 rounded-md active:scale-95 border shadow-sm font-semibold"
+                    onClick={handleClick}
                     >
                         Google
                     </button>
