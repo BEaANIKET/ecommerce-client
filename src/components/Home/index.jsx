@@ -10,6 +10,7 @@ import { PromotionalBannerEl } from "@/elements/HomeEl/PromotionalBannerEl"
 import TestimonialsPageEl from "@/elements/HomeEl/TestimonialEl"
 import TopProductCarEl2 from "@/elements/HomeEl/TopProductCarEl2"
 import TopProductCarrousel from "@/elements/HomeEl/TopProductCarousel"
+import HomeProductsLayoutEl from "@/elements/HomeEl2/HomeProductsLayoutEl"
 
 export const Home = () => {
     return (
@@ -21,6 +22,7 @@ export const Home = () => {
 
             <NewProductListEl />
             <FeturedProductEl />
+            <HomeProductsLayoutEl/>
             <PromotionalBannerEl />
             <TestimonialsPageEl />
             <HelpChatEl />
