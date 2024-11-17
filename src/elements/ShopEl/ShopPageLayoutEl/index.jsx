@@ -1,5 +1,5 @@
-"use client";
-import React, { useState, useEffect } from "react";
+"use client"
+import React, { useState } from "react";
 import { FilterOutlined, DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Menu, Checkbox } from "antd";
 import ShopDrawerEl from "../ShopDrawerEl";
@@ -85,9 +85,9 @@ const ShopPageLayoutEl = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100" style={{ userSelect: "none" }}>
+    <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-gray-50 to-gray-100" style={{ userSelect: "none" }}>
       {/* Sidebar for large screens */}
-      <div className="hidden md:block w-46 bg-white border-r shadow-md p-6">
+      <div className="hidden lg:block w-64 bg-white border-r shadow-md p-6">
         <div className="mb-6">
           {/* Sort Dropdown */}
           <Dropdown overlay={menu} trigger={["click"]}>
@@ -112,7 +112,7 @@ const ShopPageLayoutEl = () => {
         </div>
       </div>
 
-      {/* Drawer for small screens */}
+      {/* Drawer for tablet and mobile screens */}
       <ShopDrawerEl
         visible={drawerVisible}
         onClose={() => setDrawerVisible(false)}
@@ -124,12 +124,12 @@ const ShopPageLayoutEl = () => {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1">
-        {/* Toggle Button for Drawer (Mobile View) */}
+      <div className="flex-1 p-4 lg:p-6">
+        {/* Toggle Button for Drawer (Mobile and Tablet View) */}
         <Button
           type="primary"
           icon={<FilterOutlined />}
-          className="md:hidden my-3 mx-1 bg-blue-600 hover:bg-blue-700"
+          className="lg:hidden my-3 mx-1 bg-blue-600 hover:bg-blue-700"
           onClick={() => setDrawerVisible(true)}
         >
           Filter
@@ -137,7 +137,7 @@ const ShopPageLayoutEl = () => {
 
         {/* Render Category Content */}
         <div
-          className="border bg-white transition-all duration-500 overflow-y-auto max-h-[100vh]"
+          className="border bg-white transition-all duration-500 overflow-y-auto max-h-[100vh] scrollbar-none"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {renderCategoryContent()}
