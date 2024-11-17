@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { LeftOutlined, RightOutlined, StarFilled } from "@ant-design/icons";
-import HomeNewProductData from "./HomeNewProductData";
+import HomeNewProductData from "../HomeNewProductTopEl/HomeNewProductData";
 
-export const HomeNewProductTopEl = () => {
+export const HomeFeaturedProductEl = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4); // Default for large screens
 
@@ -42,7 +42,7 @@ export const HomeNewProductTopEl = () => {
       {/* Section Heading */}
       <div className="text-center mb-8">
         <h2 className="font-extrabold md:text-4xl text-4xl text-purple-700">
-          New Products
+        Featured Products
         </h2>
       </div>
 
