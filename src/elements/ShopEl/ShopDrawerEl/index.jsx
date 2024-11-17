@@ -12,7 +12,6 @@ const ShopDrawerEl = ({
   onSortChange,
 }) => {
   const sortOptions = [
-    "Relevance",
     "New Arrivals",
     "Price (High to Low)",
     "Price (Low to High)",
@@ -52,6 +51,7 @@ const ShopDrawerEl = ({
       onClose={onClose}
       open={visible}
       bodyStyle={{ padding: 0 }}
+       
     >
       <div className="p-4">
         {/* Sorting Dropdown */}
