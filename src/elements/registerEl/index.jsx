@@ -40,7 +40,15 @@ const RegisterEl= () => {
             const response= await useReuestApi('api/auth/register','POST',body);
             console.log(response);
         }catch(error) {
-            
+            console.log(error);
+        }
+    }
+
+    const handleClick= async() => {
+        try{
+            window.location.href = 'http://localhost:4000/api/auth/google';
+        }catch(error){
+            console.log(error)
         }
     }
 
@@ -80,6 +88,7 @@ const RegisterEl= () => {
                     <button 
                     type="button"
                     className="p-1 rounded-md active:scale-95 border shadow-sm font-semibold"
+                    onClick={handleClick}
                     >
                         Google
                     </button>
