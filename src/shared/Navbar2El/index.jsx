@@ -5,12 +5,16 @@ import { MenuOutlined, CloseOutlined, SearchOutlined, UserOutlined, ShoppingCart
 import CustomDrawer from '../DrawerEl';
 import { useRouter } from 'next/router';
 import './Navbar2El.css';
+import { useSelector } from 'react-redux';
 
 const Navbar2El = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const user = null;
+  // const user = null;
+  const user = useSelector(state => state.user.value)
+  console.log(user);
+
 
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 150);
@@ -24,15 +28,9 @@ const Navbar2El = () => {
 
   const profileMenu = (
     <Menu>
-      {user ? (
-        <Menu.Item key="account">
-          <Link href="/account">Account</Link>
-        </Menu.Item>
-      ) : (
-        <Menu.Item key="login">
-          <Link href="/account">Login</Link>
-        </Menu.Item>
-      )}
+      <Menu.Item key="account">
+        <Link href="/account">Account</Link>
+      </Menu.Item>
       <Menu.Item key="logout">
         <Link href="/logout">Logout</Link>
       </Menu.Item>
@@ -78,7 +76,7 @@ const Navbar2El = () => {
           ))}
 
           <div className="profile-dropdown">
-            {user ? (
+            {user.role ? (
               <Dropdown overlay={profileMenu} trigger={['hover']}>
                 <Button
                   icon={<UserOutlined />}
@@ -96,7 +94,7 @@ const Navbar2El = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <Button className="menu-toggle lg:hidden flex justify-center items-center" onClick={toggleDrawer} style={{outline:"none",border:"none",marginTop:"-8px"}}>
+        <Button className="menu-toggle lg:hidden flex justify-center items-center" onClick={toggleDrawer} style={{ outline: "none", border: "none", marginTop: "-8px" }}>
           {isDrawerOpen ? <CloseOutlined /> : <MenuOutlined />}
         </Button>
       </nav>
