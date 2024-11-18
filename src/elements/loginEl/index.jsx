@@ -83,7 +83,22 @@ const LoginEl = () => {
 
                     <p className="text-sm self-center">
                         New User?
+
                         <Link href="/register" className="text-blue-600 cursor-pointer">register</Link>
+
+                    
+                        <Link 
+                        href={'/register'}
+                        className="text-blue-600 cursor-pointer"
+                        >
+                            register
+                        </Link>
+                        <span><h3 style={{textAlign:"center"}}>OR</h3> <Link 
+                        href={'/Forget'}
+                        className="text-blue-600 cursor-pointer"
+                        >
+                            Forget Password
+                        </Link></span>
                     </p>
                 </div>
             </div>

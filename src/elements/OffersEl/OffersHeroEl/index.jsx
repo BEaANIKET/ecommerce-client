@@ -5,6 +5,7 @@ import Image from "next/image";
 
 const { TabPane } = Tabs;
 import "./Offers.css"
+import { Input } from "antd";
 
 const featuredProducts = [
   { title: "Smartphones", image: "/offer_image.avif", price: "$299" },
@@ -25,6 +26,11 @@ const bestDeals = [
     title: "50% Off on Electronics",
     image: "/offer img.webp",
     description: "Grab amazing deals on the latest gadgets.",
+  },
+  {
+    title: "Flat 60% Off - Fashion",
+    image: "/offer img.webp",
+    description: "Upgrade your wardrobe with stunning fashion deals.",
   },
   {
     title: "Flat 60% Off - Fashion",
@@ -138,6 +144,7 @@ const OffersPage = () => {
         </TabPane>
       </Tabs>
     </div>
-  );
+
+  )
 }
 export default OffersPage
