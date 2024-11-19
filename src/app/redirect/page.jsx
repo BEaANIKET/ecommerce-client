@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/redux/features/userSlice';
-import { useReuestApi } from '@/hooks/useRequestApi';
+import { useRequestApi } from '@/hooks/useRequestApi';
 
 const Page = () => {
     const router = useRouter();
@@ -16,7 +16,7 @@ const Page = () => {
 
         const makesRequest = async () => {
             try {
-                const response = await useReuestApi('api/auth/getCurruser');
+                const response = await useRequestApi('api/auth/getCurruser');
                 console.log("Response: ", response);
 
                 dispatch(

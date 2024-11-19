@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const useReuestApi = async (
+export const useRequestApi = async (
     endpoint,
     method = 'GET',
     body

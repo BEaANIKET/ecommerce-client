@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useReuestApi } from "../useRequestApi";
+import { useRequestApi } from "../useRequestApi";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -16,7 +16,7 @@ export const useRegister = () => {
         setSuccess(false);
 
         try {
-            const response = await useReuestApi('api/auth/register', 'POST', { name: `${first_name} ${last_name}`, email, password });
+            const response = await useRequestApi('api/auth/register', 'POST', { name: `${first_name} ${last_name}`, email, password });
             setSuccess(true);
             toast.success("Successfully registered")
             router.replace('/login')

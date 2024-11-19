@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/features/userSlice";
 import toast from "react-hot-toast";
-import { useReuestApi } from "@/hooks/useRequestApi";
+import { useRequestApi } from "@/hooks/useRequestApi";
 
 const LoginEl = () => {
     const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ const LoginEl = () => {
         console.log(formData);
         try {
             setIsLoading(true);
-            const response = await useReuestApi('api/auth/login', 'POST', formData);
+            const response = await useRequestApi('api/auth/login', 'POST', formData);
             console.log(response.user);
             dispatch(setUser({
                 name: response.user.name,
