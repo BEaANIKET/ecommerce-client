@@ -1,5 +1,4 @@
 import { ProductCardEl } from "@/elements/productCardEl";
-import { Separator } from "@radix-ui/react-separator";
 import { NewProductListEl2 } from "../newProductEl2";
 
 const dummyProducts = [
@@ -78,7 +77,7 @@ const dummyProducts = [
 
 export const FeturedProductEl = () => (
     <div className=" container ml-auto mr-auto w-full flex flex-col gap-3 mt-7 p-2 " >
-       <NewProductListEl2 dummyProducts={dummyProducts} tittle="Featured Products"  />
+        <NewProductListEl2 dummyProducts={dummyProducts} tittle="Featured Products" />
     </div>
 
 );

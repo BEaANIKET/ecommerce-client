@@ -1,52 +1,56 @@
-'use client'
-
 import { useState } from "react";
 import Input from "../InputEl/InputEl";
 import Link from "next/link";
+import { Spin } from "antd";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/features/userSlice";
+import toast from "react-hot-toast";
 import { useReuestApi } from "@/hooks/useRequestApi";
 
-const LoginEl= () => {
-
+const LoginEl = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
+    const dispatch = useDispatch();
 
-    const handleInputChange= (name, value) => {
-        setFormData(
-            (prev) => {
-                return {
-                    ...prev,
-                    [name]: value
-                }
-            }
-        );
-    }
+    const handleInputChange = (name, value) => {
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
 
-    const handleSubmit= async (e) => {
-
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData)
-        const { email, password }= formData;
-        const body = {
-            email: email,
-            password: password
+        console.log(formData);
+        try {
+            setIsLoading(true);
+            const response = await useReuestApi('api/auth/login', 'POST', formData);
+            console.log(response.user);
+            dispatch(setUser({
+                name: response.user.name,
+                email: response.user.email,
+                role: response.user.role,
+            }));
+            router.replace('/');
+        } catch (error) {
+            toast.error(error?.response?.data?.message || "Login failed");
+        } finally {
+            setIsLoading(false);
         }
-        try{
-            const response= await useReuestApi('api/auth/login','POST',body);
-            console.log(response);
-        }catch(error) {
-            
-        }
-    }
+    };
 
-    const handleClick= async() => {
-        try{
+    const handleClick = async () => {
+        try {
             window.location.href = 'http://localhost:4000/api/auth/google';
-        }catch(error){
-            console.log(error)
+        } catch (error) {
+            console.log(error);
         }
-    }
+    };
 
     return (
         <div className="px-4 py-12 flex justify-center items-center bg-[#f2f2f2]">
@@ -54,21 +58,16 @@ const LoginEl= () => {
                 <div className="flex flex-col">
                     <h2 className="text-3xl font-bold text-black text-center">Login to Continue</h2>
                     <p className="text-sm text-[#71717a] text-center">
-                        Enter your detail below to log into your account
+                        Enter your details below to log into your account
                     </p>
                 </div>
 
                 <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+                    <Input type="email" name="email" ph="Email" data={formData.email} onChange={(e) => handleInputChange('email', e.target.value)} />
+                    <Input type="password" name="password" ph="Password" data={formData.password} onChange={(e) => handleInputChange('password', e.target.value)} />
 
-                <Input type='email' name ='email' ph='Email' data={formData.email} onChange={(e) => { handleInputChange('email', e.currentTarget.value) }}/>
-                <Input type='password' name ='password' ph='Password' data={formData.password} onChange={(e) => { handleInputChange('password', e.currentTarget.value) }}/>
-
-                    <button 
-                        type="submit" 
-                        className={`p-2 rounded-md bg-slate-900 text-white font-semibold active:scale-95`
-                        }
-                    >
-                        Log-In
+                    <button type="submit" className="p-2 rounded-md bg-slate-900 text-white font-semibold active:scale-95" disabled={isLoading}>
+                        {isLoading ? <Spin /> : "Login"}
                     </button>
                 </form>
 
@@ -79,22 +78,14 @@ const LoginEl= () => {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                    <button 
-                    type="button"
-                    className="p-1 rounded-md active:scale-95 border shadow-sm font-semibold"
-                    onClick={handleClick}
-                    >
-                        Google
-                    </button>
+                    <button type="button" className="p-1 rounded-md active:scale-95 border shadow-sm font-semibold" onClick={handleClick}>Google</button>
+                    <button className="p-1 rounded-md active:scale-95 border shadow-sm font-semibold" type="button">Facebook</button>
 
-                    <button 
-                    className="p-1 rounded-md active:scale-95 border shadow-sm font-semibold"
-                    type="button"
-                    >
-                        Facebook
-                    </button>
                     <p className="text-sm self-center">
                         New User?
+
+                        <Link href="/register" className="text-blue-600 cursor-pointer">register</Link>
+
                     
                         <Link 
                         href={'/register'}
@@ -113,6 +104,6 @@ const LoginEl= () => {
             </div>
         </div>
     );
-}
+};
 
 export default LoginEl;

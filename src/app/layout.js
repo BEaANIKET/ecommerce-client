@@ -1,5 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import { ReduxProvider } from "@/redux/provider";
 
 
 export const metadata = {
@@ -13,8 +14,11 @@ export default function RootLayout({ children }) {
       <body
         className={`antialiased`}
       >
-        {children}
-        <Toaster />
+        <ReduxProvider>
+          {children}
+          <Toaster />
+        </ReduxProvider>
+
       </body>
     </html>
   );
