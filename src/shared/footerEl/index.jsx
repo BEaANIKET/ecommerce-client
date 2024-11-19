@@ -21,11 +21,12 @@ export const Footer = () => {
               <span>Blog</span>
             </div>
             <div className="footer_column">
-              <h3>Services</h3>
-              <span>Cleaning</span>
-              <span>Plumbing</span>
-              <span>Electrical</span>
-              <span>Carpentry</span>
+              <h3>Products</h3>
+              <span>Customized Puja Kits</span>
+              <span>Handcrafted Idols and Frames</span>
+              <span>Spiritual Books and Scriptures</span>
+              <span>Traditional Clothing and Accessories</span>
+              <span>Aarti CDs and Digital Downloads</span>
             </div>
             <div className="footer_column">
               <h3>Help & Support</h3>
